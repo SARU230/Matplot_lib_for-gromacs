@@ -1,0 +1,60 @@
+"""# this is only for 1 file
+import numpy as np
+import matplotlib.ticker as ticker
+
+# Read the .xvg file
+data = []
+with open("r46_631.xvg", "r") as file:
+    for line in file:
+        if not line.startswith(("#", "@")):  # Skip comments and metadata
+            data.append(list(map(float, line.split())))
+
+# Convert to numpy array
+data = np.array(data)
+time = data[:, 0]  # First column is time
+distance = data[:, 1]  # Second column is distance
+
+import matplotlib.pyplot as plt
+
+# Plot the data
+plt.figure(figsize=(10, 6))
+plt.plot(time, distance, color="blue")
+
+# Add labels and title
+plt.xlabel("Time (ps)")
+plt.ylabel("Distance (nm)")
+plt.title("Tips_pen at 77 K")
+
+
+# Plot the data with a custom legend label
+#plt.figure(figsize=(10, 6))
+plt.plot(time, distance, label="r-6", color="blue")
+
+# Customize the legend
+legend = plt.legend(
+    loc="upper right",  # Position the legend
+    #title="Distance Legend",  # Add a title
+    prop={'size': 12},  # Increase font size
+    facecolor="white",  # Set background color
+    edgecolor="black",  # Set border color
+    framealpha=0.7,  # Set transparency
+)
+
+#plt.legend("r-6")
+
+plt.grid(True)
+
+plt.xlim(0,20000)
+plt.ylim(0,1.5)
+
+# Set major axis spacing
+#major_spacing_x = 1.0  # Set major tick spacing for x-axis (e.g., 1.0 nm)
+major_spacing_y = 0.1  # Set major tick spacing for y-axis (e.g., 1000 bar)
+
+ax = plt.gca()  # Get the current axis
+#ax.xaxis.set_major_locator(ticker.MultipleLocator(major_spacing_x))  # Set x-axis spacing
+ax.yaxis.set_major_locator(ticker.MultipleLocator(major_spacing_y))  # Set y-axis spacin
+
+
+# Show the plot
+plt.show() """
